@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="container " >
+
+			<div class="row" >
+				<div class="col-md-6 offset-md-3 my-3" style="background-color: white;">
+					<div class="my-cart mt-2 col-md-8 offset-md-2">
+						<div class="alert alert-primary text-center" role="alert" th:text="${success}"
+							th:if="${success}"></div>
+						<div class="alert alert-danger text-center" role="alert" th:text="${error}" th:if="${error}">
+						</div>
+						<img style="width: 80px;" src="" th:src="@{/image/contract.png}" alt="image" />
+						<h1 class="text-center">Register Here</h1>
+
+						<form  action="" th:action="@{/do_register}" method="post" th:object="${user}">
+
+							<div class="form-group">
+								<label for="name"> Your Name</label>
+								<input type="text" name="name" class="form-control"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
+									th:value="${user.name}" autofocus required />
+								<p class="invalid-feedback" th:errors="*{name}"></p>
+							</div>
+
+							<div class="form-group">
+								<label for="email"> Your Email</label>
+								<input type="email" name="email" class="form-control"
+									th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}"
+									th:value="${user.email}" />
+								<p class="invalid-feedback" th:errors="*{email}"></p>
+							</div>
+
+							<div class="form-group">
+								<label for="pwd"> Your Password</label>
+								<input type="password" name="pwd"
+									th:classappend="${#fields.hasErrors('pwd') ? 'is-invalid':''}"
+									class="form-control" />
+								<p class="invalid-feedback" th:errors="*{pwd}"></p>
+							</div>
+							<div class="form-group my-3">
+
+								<textarea placeholder="Write something about contact" th:value="${user.about}"
+									name="about" class="form-control" rows="5"></textarea>
+							</div>
+							<div class="form-group form-check">
+
+								<input type="checkbox" name="agreement" class="form-check-input"  />
+								<label>Accept terms & conditions </label>
+							</div>
+
+							<div class="container my-3">
+								<button type=" submit"
+									class="btn btn-success btn-outline-primary  text-white">Submit</button>
+								<button type="reset" class="btn btn-success text-white">Reset</button>
+							<span>Already Registered ? <a hreg="/" th:href="@{/login}">Login here</a></span>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
